@@ -29,6 +29,7 @@ import org.openmrs.Relationship;
 import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
+import org.openmrs.module.htmlformentry.velocity.VelocityContextContentProvider;
 import org.openmrs.module.htmlformentry.widget.LocationWidget;
 import org.openmrs.module.htmlformentry.widget.Widget;
 import org.openmrs.util.OpenmrsUtil;
@@ -190,6 +191,11 @@ public class FormEntrySession {
 			}
 			velocityContext.put("relationshipList", rels);
 			velocityContext.put("relationshipMap", relMap);
+		}
+		
+		List<VelocityContextContentProvider> additionalVelocityContent = Context.getRegisteredComponents(VelocityContextContentProvider.class);
+		for (VelocityContextContentProvider a : additionalVelocityContent) {
+			a.populateContext(velocityContext);
 		}
 		
 		htmlGenerator = new HtmlFormEntryGenerator();
