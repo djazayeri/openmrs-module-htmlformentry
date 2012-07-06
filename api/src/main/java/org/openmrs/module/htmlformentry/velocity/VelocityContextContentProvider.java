@@ -28,6 +28,6 @@ public interface VelocityContextContentProvider {
      * 
      * @param velocityContext
      */
-    void populateContext(VelocityContext velocityContext);
+    void populateContext(FormEntrySession session, VelocityContext velocityContext);
 	
 }

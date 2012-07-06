@@ -195,7 +195,7 @@ public class FormEntrySession {
 		
 		List<VelocityContextContentProvider> additionalVelocityContent = Context.getRegisteredComponents(VelocityContextContentProvider.class);
 		for (VelocityContextContentProvider a : additionalVelocityContent) {
-			a.populateContext(velocityContext);
+			a.populateContext(this, velocityContext);
 		}
 		
 		htmlGenerator = new HtmlFormEntryGenerator();
