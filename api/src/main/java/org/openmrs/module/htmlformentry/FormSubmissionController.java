@@ -46,12 +46,17 @@ public class FormSubmissionController {
     }
     
     /**
-     * Adds a FormSubmissionControllerAction to the list of submission actions.
+     * Adds a FormSubmissionControllerAction to the list of submission actions (or to the active
+     * {@link RepeatControllerAction} if one is active).
      * 
      * @param the form submission controller action to add
      */
     public void addAction(FormSubmissionControllerAction action) {
-        actions.add(action);
+    	if (repeat != null) {
+    		repeat.addAction(action);
+    	} else {
+    		actions.add(action);
+    	}
     }
     
     /**
